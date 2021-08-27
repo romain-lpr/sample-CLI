@@ -7,6 +7,9 @@ switch (cmd) {
   case 'filter':
     filter(args)
   break;
+  case 'count':
+    count()
+    break
   default:
     console.error(`${cmd} is not a valid command!`)
     break;
@@ -43,4 +46,14 @@ function filter(args){
   if(returnData[0]){
     console.log(JSON.stringify(returnData,null,2))
   }
+}
+
+function count(){
+  data.forEach(country => {
+    country.name += `[${country.people.length}]`
+    country.people.forEach(people => {
+      people.name += `[${people.animals.length}]`
+    })
+  })
+  console.log(JSON.stringify(data,null,' '))
 }
